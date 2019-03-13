@@ -29,6 +29,6 @@ Feature: Add/edit Categories
     And I am logged into the admin panel
     And I follow "Categories"
     And I fill in "category_name" with "general"
-    And I press "Cancel"
+    And I click "Cancel"
     Then I should be on the admin category page
     And I should not see "general"
