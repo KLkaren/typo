@@ -10,16 +10,16 @@ Feature: Add/edit Categories
     And I fill in "category_name" with "general"
     And I fill in "category_keywords" with "general"
     And I fill in "category_description" with "general articles"
-    And I press "save"
-    Then I should see "Category was successfully added"
+    And I press "Save"
+    Then I should see "Category was successfully saved"
     
  Scenario: Successfully edit existed categories
     Given the blog is set up
     And I am logged into the admin panel
     And I follow "Categories"
-    And I follow "general"
+    And I follow "General"
     And I fill in "category_name" with "general list"
     And I fill in "category_keywords" with "general list 1"
     And I fill in "category_description" with "general articles covered my life"
-    And I press "save"
-    Then I should see "Category was successfully edited"
+    And I press "Save"
+    Then I should see "Category was successfully saved"
