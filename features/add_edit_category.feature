@@ -23,3 +23,12 @@ Feature: Add/edit Categories
     And I fill in "category_description" with "general articles covered my life"
     And I press "Save"
     Then I should see "Category was successfully saved"
+    
+  Scenario: Cancel the input
+    Given the blog is set up
+    And I am logged into the admin panel
+    And I follow "Categories"
+    And I fill in "category_name" with "general"
+    And I press "Cancel"
+    Then I should be on the admin category page
+    And I should not see "general"
