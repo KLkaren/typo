@@ -4,10 +4,9 @@ Feature: Add/edit Categories
   I want to be able to add or edit categories to my blog
 
  Background: 
-    Given the blog is set up
-    And I am logged into the admin panel
+    Categories to be added or edited 
     
- Scenario: Successfully add categories
+ Scenario: Successfully add new categories or edit existed categories
     Given the blog is set up
     And I am logged into the admin panel
     And I follow "Categories"
