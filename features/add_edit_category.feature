@@ -11,7 +11,7 @@ Feature: Add/edit Categories
     And I am logged into the admin panel
     And I follow "Categories"
     And I fill in "category_name" with "general"
-    And I fill in "category_keyword" with "general"
+    And I fill in "category_keywords" with "general"
     And I fill in "category_description" with "general articles"
     And I press "save"
     Then I should see "Category was successfully added"
@@ -22,7 +22,7 @@ Feature: Add/edit Categories
     And I follow "Categories"
     And I follow "general"
     And I fill in "category_name" with "general list"
-    And I fill in "category_keyword" with "general list 1"
+    And I fill in "category_keywords" with "general list 1"
     And I fill in "category_description" with "general articles covered my life"
     And I press "save"
     Then I should see "Category was successfully edited"
