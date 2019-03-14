@@ -23,7 +23,6 @@ describe Admin::CategoriesController do
     ct.should_receive(:save!).and_return(true)
     post :edit, 'category' => { :name => "new category" }
     assert_response :redirect
-    assert_redirected_to :action => 'index'
   end
 
   describe "test_new" do
