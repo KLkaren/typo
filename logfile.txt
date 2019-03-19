@@ -1,0 +1,78 @@
+Using the default profile...
+Feature: Add/edit Categories
+  As a blog administrator
+  In order to better organize the articles
+  I want to be able to follow Categories to add or edit categories to my blog
+
+  Background:                            # features/add_edit_category.feature:6
+    Given the blog is set up             # features/step_definitions/web_steps.rb:34
+    And I am logged into the admin panel # features/step_definitions/web_steps.rb:46
+
+  Scenario: Successfully jump to the category page # features/add_edit_category.feature:10
+    When I follow "Categories"                     # features/step_definitions/web_steps.rb:80
+    Then I should see "Categories"                 # features/step_definitions/web_steps.rb:129
+    And I should see "Keywords"                    # features/step_definitions/web_steps.rb:129
+    And I should see "Permalink"                   # features/step_definitions/web_steps.rb:129
+    And I should see "Description"                 # features/step_definitions/web_steps.rb:129
+    And I should see "General"                     # features/step_definitions/web_steps.rb:129
+
+  Scenario: Successfully add new categories                       # features/add_edit_category.feature:18
+    When I follow "Categories"                                    # features/step_definitions/web_steps.rb:80
+    And I fill in "category_name" with "News"                     # features/step_definitions/web_steps.rb:84
+    And I fill in "category_keywords" with "news"                 # features/step_definitions/web_steps.rb:84
+    And I fill in "category_description" with "Happened everyday" # features/step_definitions/web_steps.rb:84
+    And I press "Save"                                            # features/step_definitions/web_steps.rb:76
+    Then I should see "Category was successfully saved"           # features/step_definitions/web_steps.rb:129
+    And I should see "News"                                       # features/step_definitions/web_steps.rb:129
+    And I should see "no articles"                                # features/step_definitions/web_steps.rb:129
+
+  Scenario: Successfully edit existed categories                                 # features/add_edit_category.feature:28
+    When I follow "Categories"                                                   # features/step_definitions/web_steps.rb:80
+    And I follow "General"                                                       # features/step_definitions/web_steps.rb:80
+    And I fill in "category_name" with "General list"                            # features/step_definitions/web_steps.rb:84
+    And I fill in "category_keywords" with "general list 1"                      # features/step_definitions/web_steps.rb:84
+    And I fill in "category_description" with "general articles covered my life" # features/step_definitions/web_steps.rb:84
+    And I press "Save"                                                           # features/step_definitions/web_steps.rb:76
+    Then I should see "Category was successfully saved"                          # features/step_definitions/web_steps.rb:129
+    And I should see "General list"                                              # features/step_definitions/web_steps.rb:129
+    And I should see "no articles"                                               # features/step_definitions/web_steps.rb:129
+
+Feature: Create Blog
+  As an author
+  In order to gift my thoughts to the world
+  I want to create a blog
+
+  Scenario: Create blog page shown      # features/create_blog.feature:6
+    Given I am on the home page         # features/step_definitions/web_steps.rb:68
+    Then I should see "Welcome"         # features/step_definitions/web_steps.rb:129
+    And I should see "My Shiny Weblog!" # features/step_definitions/web_steps.rb:129
+
+  Scenario: Create blog page not shown when blog created # features/create_blog.feature:11
+    Given the blog is set up                             # features/step_definitions/web_steps.rb:34
+    When I am on the home page                           # features/step_definitions/web_steps.rb:68
+    Then I should not see "My Shiny Weblog!"             # features/step_definitions/web_steps.rb:147
+    And I should see "Teh Blag"                          # features/step_definitions/web_steps.rb:129
+
+Feature: Write Articles
+  As a blog administrator
+  In order to share my thoughts with the world
+  I want to be able to add articles to my blog
+
+  Background:                            # features/write_article.feature:6
+    Given the blog is set up             # features/step_definitions/web_steps.rb:34
+    And I am logged into the admin panel # features/step_definitions/web_steps.rb:46
+
+  Scenario: Successfully write articles                                  # features/write_article.feature:10
+    Given I am on the new article page                                   # features/step_definitions/web_steps.rb:68
+    When I fill in "article_title" with "Foobar"                         # features/step_definitions/web_steps.rb:84
+    And I fill in "article__body_and_extended_editor" with "Lorem Ipsum" # features/step_definitions/web_steps.rb:84
+    And I press "Publish"                                                # features/step_definitions/web_steps.rb:76
+    Then I should be on the admin content page                           # features/step_definitions/web_steps.rb:254
+    When I go to the home page                                           # features/step_definitions/web_steps.rb:72
+    Then I should see "Foobar"                                           # features/step_definitions/web_steps.rb:129
+    When I follow "Foobar"                                               # features/step_definitions/web_steps.rb:80
+    Then I should see "Lorem Ipsum"                                      # features/step_definitions/web_steps.rb:129
+
+6 scenarios (6 passed)
+47 steps (47 passed)
+0m4.624s
